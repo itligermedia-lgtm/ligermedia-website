@@ -1,0 +1,22 @@
+# WordPress Secrets & Local Config
+wp-config.php
+.htaccess
+
+# Environment & Editor files
+.env
+.idea/
+.vscode/
+*.log
+
+# Large media cache (optional, allow custom theme uploads if needed)
+# wp-content/uploads/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary scratch files
+scratch/

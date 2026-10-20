@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+    <meta name="theme-color" content="#e4e4e1">
+    <title>Company Profile — Liger Media</title>
+
+    <style>
+        :root {
+            --app-height: 100dvh;
+            --control-height: 56px;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-right: env(safe-area-inset-right, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-left: env(safe-area-inset-left, 0px);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            background: #e4e4e1;
+            font-family: "Sarabun", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            overscroll-behavior: none;
+        }
+
+        body {
+            height: var(--app-height);
+            overflow: hidden;
+            color: #fff;
+        }
+
+        button { font: inherit; }
+
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: #e4e4e1;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+
+        #loading-screen.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 14px;
+            border: 4px solid rgba(55,55,55,.18);
+            border-top-color: #555;
+            border-radius: 50%;
+            animation: spin .9s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .app-container {
+            position: relative;
+            width: 100%;
+            height: var(--app-height);
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) auto;
+            gap: clamp(8px, 1.5vh, 16px);
+            padding:
+                max(10px, var(--safe-top))
+                max(10px, var(--safe-right))
+                max(10px, var(--safe-bottom))
+                max(10px, var(--safe-left));
+            overflow: hidden;
+        }
+
+        .viewer-stage {
+            position: relative;
+            min-width: 0;
+            min-height: 0;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .book-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-width: 0;
+            min-height: 0;
+            display: grid;
+            place-items: center;
+            --book-shift-x: 0px;
+            --book-scale: 1;
+            transform: translate3d(var(--book-shift-x), 0, 0) scale(var(--book-scale));
+            transform-origin: center;
+            transition: transform .28s ease;
+            will-change: transform;
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            min-width: 0;
+            min-height: 0;
+            flex: 0 0 auto;
+        }
+
+        .page {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: inset 0 0 5px rgba(0,0,0,.08), 0 8px 26px rgba(40,40,40,.18);
+        }
+
+        .page img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .page.image-error::before {
+            content: "ไม่พบรูปภาพหน้านี้";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            color: #555;
+            background: #f4f4f4;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .page-left::after {
+            background: linear-gradient(to right, transparent 88%, rgba(0,0,0,.03) 95%, rgba(0,0,0,.14));
+        }
+
+        .page-right::after {
+            background: linear-gradient(to left, transparent 88%, rgba(0,0,0,.03) 95%, rgba(0,0,0,.14));
+        }
+
+        .stf__item > div[style*="box-shadow"],
+        .stf__wrapper > div[style*="background"],
+        .stf__parent,
+        .stf__block {
+            border: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        /* ให้หนึ่งนิ้วลากหน้ากระดาษตามนิ้วจริง และใช้สองนิ้วสำหรับ pinch zoom */
+        .page,
+        .stf__parent,
+        .stf__wrapper,
+        .stf__block,
+        .stf__item,
+        .stf__item > * {
+            touch-action: none !important;
+            -ms-touch-action: none !important;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .stf__parent,
+        .stf__wrapper,
+        .stf__item {
+            cursor: grab;
+        }
+
+        .stf__parent:active,
+        .stf__wrapper:active,
+        .stf__item:active {
+            cursor: grabbing;
+        }
+
+        .bottom-controls {
+            justify-self: center;
+            min-height: var(--control-height);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: calc(100vw - 20px);
+            padding: 7px 14px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 999px;
+            background: rgba(47,47,47,.82);
+            box-shadow: 0 5px 18px rgba(40,40,40,.16);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 100;
+        }
+
+        .nav-btn,
+        .jump-btn,
+        #fullscreenBtn,
+        #resetZoomBtn,
+        .back-library {
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.14);
+            color: #fff;
+            cursor: pointer;
+            transition: background .18s ease, transform .18s ease, opacity .18s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover,
+        .jump-btn:hover,
+        #fullscreenBtn:hover,
+        #resetZoomBtn:hover,
+        .back-library:hover { background: rgba(255,255,255,.26); }
+
+        .nav-btn:active,
+        .jump-btn:active,
+        #fullscreenBtn:active,
+        #resetZoomBtn:active,
+        .back-library:active { transform: scale(.94); }
+
+        .nav-btn:focus-visible,
+        .jump-btn:focus-visible,
+        #fullscreenBtn:focus-visible,
+        #resetZoomBtn:focus-visible,
+        .back-library:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .nav-btn:disabled,
+        .jump-btn:disabled {
+            opacity: .28;
+            cursor: default;
+            pointer-events: none;
+        }
+
+
+        .jump-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            min-width: 76px;
+            height: 40px;
+            padding: 0 14px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255,255,255,.14);
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background .18s ease, transform .18s ease, opacity .18s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .jump-btn .short-label { display: none; }
+
+        .page-indicator {
+            min-width: 104px;
+            color: #eee;
+            font-size: 14px;
+            line-height: 1.2;
+            letter-spacing: .3px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .top-actions {
+            position: fixed;
+            top: max(12px, var(--safe-top));
+            right: max(12px, var(--safe-right));
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+        }
+
+        #fullscreenBtn,
+        #resetZoomBtn,
+        .back-library {
+            background: rgba(48,48,48,.76);
+            box-shadow: 0 3px 12px rgba(40,40,40,.16);
+        }
+
+        #resetZoomBtn[hidden] { display: none; }
+
+        .back-library { text-decoration: none; }
+
+        .status-message {
+            position: fixed;
+            left: 50%;
+            bottom: calc(var(--control-height) + max(26px, var(--safe-bottom)));
+            z-index: 1200;
+            max-width: min(90vw, 520px);
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(138, 25, 25, .95);
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 640px) {
+            :root { --control-height: 52px; }
+
+            .viewer-stage::after {
+                content: "ลากหน้ากระดาษประมาณ 1/3 แล้วปล่อยเพื่อพลิก";
+                position: absolute;
+                left: 50%;
+                bottom: 8px;
+                z-index: 20;
+                padding: 5px 10px;
+                border-radius: 999px;
+                background: rgba(255,255,255,.72);
+                color: rgba(45,45,45,.72);
+                font-size: 11px;
+                line-height: 1;
+                pointer-events: none;
+                transform: translateX(-50%);
+                opacity: 0;
+                animation: swipeHint 4s ease 1.2s 1;
+            }
+
+            .app-container { gap: 6px; }
+            .bottom-controls { gap: 9px; padding: 6px 10px; }
+            .nav-btn, #fullscreenBtn, #resetZoomBtn { width: 38px; height: 38px; }
+            .jump-btn { min-width: 58px; height: 38px; padding: 0 10px; font-size: 12px; }
+            .jump-btn .full-label { display: none; }
+            .jump-btn .short-label { display: inline; }
+            .page-indicator { min-width: 88px; font-size: 13px; }
+            .top-actions { top: max(8px, var(--safe-top)); right: max(8px, var(--safe-right)); }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            :root { --control-height: 46px; }
+
+            .app-container {
+                grid-template-columns: minmax(0, 1fr) auto;
+                grid-template-rows: minmax(0, 1fr);
+                gap: 8px;
+            }
+
+            .bottom-controls {
+                align-self: center;
+                flex-direction: column;
+                padding: 8px 6px;
+                border-radius: 24px;
+            }
+
+            .jump-btn {
+                min-width: 42px;
+                width: 42px;
+                height: 34px;
+                padding: 0 4px;
+                font-size: 11px;
+            }
+
+            .jump-btn .full-label { display: none; }
+            .jump-btn .short-label { display: inline; }
+
+            .page-indicator {
+                min-width: 0;
+                max-width: 46px;
+                white-space: normal;
+            }
+        }
+
+        @keyframes swipeHint {
+            0%, 100% { opacity: 0; transform: translate(-50%, 5px); }
+            15%, 75% { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-screen" role="status" aria-live="polite">
+        <div>
+            <div class="spinner" aria-hidden="true"></div>
+            <div id="loadingText">กำลังโหลดแคตตาล็อก...</div>
+        </div>
+    </div>
+
+    <div class="top-actions">
+        <a href="../" class="back-library" title="กลับหน้ารวม E-Book" aria-label="กลับหน้ารวม E-Book">⌂</a>
+        <button id="resetZoomBtn" type="button" title="รีเซ็ตการซูม" aria-label="รีเซ็ตการซูม" hidden>1×</button>
+        <button id="fullscreenBtn" type="button" title="เปิดเต็มหน้าจอ" aria-label="เปิดเต็มหน้าจอ">⛶</button>
+    </div>
+
+    <main class="app-container" id="app-container">
+        <section class="viewer-stage" id="viewer-stage" aria-label="Company Profile Liger Media">
+            <div id="book-wrapper" class="book-wrapper">
+                <div id="book" class="book">
+                    <div class="page"><img fetchpriority="high" decoding="async" src="img/liger-profile (1).webp" alt="Company Profile — Liger Media หน้า 1"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (2).webp" alt="Company Profile — Liger Media หน้า 2"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (3).webp" alt="Company Profile — Liger Media หน้า 3"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (4).webp" alt="Company Profile — Liger Media หน้า 4"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (5).webp" alt="Company Profile — Liger Media หน้า 5"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (6).webp" alt="Company Profile — Liger Media หน้า 6"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (7).webp" alt="Company Profile — Liger Media หน้า 7"></div>
+                    <div class="page"><img loading="lazy" decoding="async" src="img/liger-profile (8).webp" alt="Company Profile — Liger Media หน้า 8"></div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="bottom-controls" aria-label="ตัวควบคุมแคตตาล็อก">
+            <button id="firstBtn" class="jump-btn" type="button" aria-label="ไปหน้าแรก" title="ไปหน้าแรก">
+                <span class="full-label">หน้าแรก</span><span class="short-label">แรก</span>
+            </button>
+            <button id="prevBtn" class="nav-btn" type="button" aria-label="หน้าก่อนหน้า" title="หน้าก่อนหน้า">❮</button>
+            <div id="pageIndicator" class="page-indicator" aria-live="polite">ปกหน้า</div>
+            <button id="nextBtn" class="nav-btn" type="button" aria-label="หน้าถัดไป" title="หน้าถัดไป">❯</button>
+            <button id="lastBtn" class="jump-btn" type="button" aria-label="ไปหน้าสุดท้าย" title="ไปหน้าสุดท้าย">
+                <span class="full-label">หน้าสุดท้าย</span><span class="short-label">ท้าย</span>
+            </button>
+        </nav>
+    </main>
+
+    <div id="statusMessage" class="status-message" role="alert" hidden></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <script>
+    (() => {
+        'use strict';
+
+        const $ = (selector) => document.querySelector(selector);
+        const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+        const appContainer = $('#app-container');
+        const viewerStage = $('#viewer-stage');
+        const bookElement = $('#book');
+        const bookWrapper = $('#book-wrapper');
+        const firstBtn = $('#firstBtn');
+        const prevBtn = $('#prevBtn');
+        const nextBtn = $('#nextBtn');
+        const lastBtn = $('#lastBtn');
+        const pageIndicator = $('#pageIndicator');
+        const loadingScreen = $('#loading-screen');
+        const loadingText = $('#loadingText');
+        const fullscreenBtn = $('#fullscreenBtn');
+        const resetZoomBtn = $('#resetZoomBtn');
+        const statusMessage = $('#statusMessage');
+        const pages = $$('.page');
+        const images = $$('.page img');
+
+        let pageFlip = null;
+        let isFlipping = false;
+        let resizeTimer = null;
+        let resizeObserver = null;
+        let lastFrameWidth = 0;
+        let lastFrameHeight = 0;
+        let layoutPass = 0;
+        let currentScale = 1;
+        let pinchStartDistance = 0;
+        let pinchStartScale = 1;
+        let lastTapTime = 0;
+        let isPinching = false;
+        let loadingClosed = false;
+
+        // ตัวช่วยการลากบนมือถือ: ปล่อยนิ้วเมื่อเลื่อนประมาณ 34% ก็พลิกหน้าได้
+        const ASSIST_SWIPE_RATIO = 0.34;
+        const ASSIST_SWIPE_MIN_PX = 64;
+        let assistTouch = null;
+
+        /*
+         * กำหนดขนาดของ E-Book แต่ละเล่มได้อิสระ
+         * - a4-portrait       = A4 แนวตั้ง
+         * - half-a4-landscape = ครึ่ง A4 แนวนอน (A5 แนวนอน)
+         *
+         * เปลี่ยนเฉพาะค่า BOOK_FORMAT ในไฟล์ของแต่ละเล่ม
+         */
+        const BOOK_FORMAT = 'a4-portrait';
+        const BOOK_FORMATS = {
+            'a4-portrait': { width: 794, height: 1123 },
+            'half-a4-landscape': { width: 794, height: 561 }
+        };
+
+        const selectedFormat = BOOK_FORMATS[BOOK_FORMAT] || BOOK_FORMATS['a4-portrait'];
+        const PAGE_WIDTH = selectedFormat.width;
+        const PAGE_HEIGHT = selectedFormat.height;
+        const SINGLE_PAGE_RATIO = PAGE_WIDTH / PAGE_HEIGHT;
+        const SPREAD_RATIO = (PAGE_WIDTH * 2) / PAGE_HEIGHT;
+
+        function setAppHeight() {
+            const height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            document.documentElement.style.setProperty('--app-height', `${Math.round(height)}px`);
+        }
+
+
+        function fitBookFrame() {
+            const stageRect = viewerStage.getBoundingClientRect();
+            const availableWidth = Math.max(1, Math.floor(stageRect.width));
+            const availableHeight = Math.max(1, Math.floor(stageRect.height));
+
+            /*
+             * จอที่กว้างพอจะแสดงเป็นหน้าคู่ ส่วนจอแคบใช้หน้าเดี่ยว
+             * ล็อกกรอบตามสัดส่วนจริงเพื่อให้สันกลางชิดกันและไม่เกิดช่องว่าง
+             */
+            const useSpreadFrame = availableWidth / availableHeight >= 1.72;
+            const ratio = useSpreadFrame ? SPREAD_RATIO : SINGLE_PAGE_RATIO;
+
+            let frameWidth = Math.min(availableWidth, availableHeight * ratio);
+            let frameHeight = frameWidth / ratio;
+
+            if (frameHeight > availableHeight) {
+                frameHeight = availableHeight;
+                frameWidth = frameHeight * ratio;
+            }
+
+            frameWidth = Math.max(1, Math.floor(frameWidth));
+            frameHeight = Math.max(1, Math.floor(frameHeight));
+
+            bookElement.style.width = `${frameWidth}px`;
+            bookElement.style.height = `${frameHeight}px`;
+
+            return {
+                width: frameWidth,
+                height: frameHeight,
+                changed: frameWidth !== lastFrameWidth || frameHeight !== lastFrameHeight
+            };
+        }
+
+        function refreshPageFlipLayout(force = false) {
+            const frame = fitBookFrame();
+            if (!pageFlip) {
+                lastFrameWidth = frame.width;
+                lastFrameHeight = frame.height;
+                return;
+            }
+
+            if (!force && !frame.changed) {
+                updateControls();
+                return;
+            }
+
+            lastFrameWidth = frame.width;
+            lastFrameHeight = frame.height;
+            const pass = ++layoutPass;
+
+            /*
+             * ต้องรอให้ browser นำ width/height ใหม่ไปจัด layout ก่อน
+             * แล้วจึงสั่ง PageFlip.update() มิฉะนั้นตัว render ภายในจะค้างขนาดเดิม
+             */
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (!pageFlip || pass !== layoutPass) return;
+                    pageFlip.update();
+                    updateControls();
+
+                    // Chrome/Fullscreen บางครั้งอัปเดต viewport ช้ากว่า 1 เฟรม
+                    window.setTimeout(() => {
+                        if (!pageFlip || pass !== layoutPass) return;
+                        pageFlip.update();
+                        updateControls();
+                    }, 80);
+                });
+            });
+        }
+
+        function showStatus(message) {
+            statusMessage.textContent = message;
+            statusMessage.hidden = false;
+        }
+
+        function hideLoading() {
+            if (loadingClosed) return;
+            loadingClosed = true;
+            loadingScreen.classList.add('is-hidden');
+            window.setTimeout(() => loadingScreen.remove(), 450);
+        }
+
+        function markPageSides() {
+            pages.forEach((page, index) => {
+                page.classList.toggle('page-right', index % 2 === 0);
+                page.classList.toggle('page-left', index % 2 !== 0);
+            });
+        }
+
+        function prepareImages() {
+            let settled = 0;
+            const finishOne = () => {
+                settled += 1;
+                loadingText.textContent = `กำลังโหลดรูป ${settled} / ${images.length}`;
+                if (settled >= images.length && pageFlip) hideLoading();
+            };
+
+            images.forEach((img) => {
+                const page = img.closest('.page');
+                if (img.complete) {
+                    if (!img.naturalWidth) page.classList.add('image-error');
+                    finishOne();
+                    return;
+                }
+
+                img.addEventListener('load', finishOne, { once: true });
+                img.addEventListener('error', () => {
+                    page.classList.add('image-error');
+                    finishOne();
+                }, { once: true });
+            });
+
+            window.setTimeout(hideLoading, 8000);
+        }
+
+        function updateBookPosition(currentIndex = null) {
+            if (!pageFlip) return;
+
+            const current = Number.isInteger(currentIndex)
+                ? currentIndex
+                : pageFlip.getCurrentPageIndex();
+            const lastIndex = Math.max(0, pageFlip.getPageCount() - 1);
+            const orientation = pageFlip.getOrientation();
+
+            // ในโหมดหน้าคู่ ปกหน้าอยู่ครึ่งขวาและปกหลังอยู่ครึ่งซ้าย
+            // เลื่อนกรอบ 25% เฉพาะสองปกเพื่อให้หน้าที่มองเห็นอยู่กึ่งกลางจอ
+            let shift = '0px';
+            if (orientation === 'landscape') {
+                if (current <= 0) shift = '-25%';
+                else if (current >= lastIndex) shift = '25%';
+            }
+
+            bookWrapper.style.setProperty('--book-shift-x', shift);
+        }
+
+        function updateControls(event) {
+            if (!pageFlip) return;
+
+            const total = pageFlip.getPageCount();
+            const eventIndex = event && Number.isInteger(event.data) ? event.data : null;
+            const current = eventIndex ?? pageFlip.getCurrentPageIndex();
+            const orientation = pageFlip.getOrientation();
+            const lastIndex = Math.max(0, total - 1);
+
+            firstBtn.disabled = current <= 0;
+            prevBtn.disabled = current <= 0;
+            nextBtn.disabled = current >= lastIndex;
+            lastBtn.disabled = current >= lastIndex;
+            updateBookPosition(current);
+
+            if (current <= 0) {
+                pageIndicator.textContent = 'ปกหน้า';
+            } else if (current >= lastIndex) {
+                pageIndicator.textContent = 'ปกหลัง';
+            } else if (orientation === 'portrait') {
+                pageIndicator.textContent = `${current + 1} / ${total}`;
+            } else {
+                const first = current + 1;
+                const second = Math.min(current + 2, total);
+                pageIndicator.textContent = second > first ? `${first}–${second} / ${total}` : `${first} / ${total}`;
+            }
+        }
+
+        function applyZoom(scale, animate = true) {
+            currentScale = Math.min(3, Math.max(1, scale));
+            bookWrapper.style.transition = animate ? 'transform .28s ease' : 'none';
+            bookWrapper.style.setProperty('--book-scale', currentScale);
+            resetZoomBtn.hidden = currentScale <= 1.01;
+            resetZoomBtn.textContent = `${currentScale.toFixed(currentScale % 1 ? 1 : 0)}×`;
+        }
+
+        function resetZoom() { applyZoom(1); }
+
+        function initializeBook() {
+            const initialFrame = fitBookFrame();
+            lastFrameWidth = initialFrame.width;
+            lastFrameHeight = initialFrame.height;
+
+            if (!window.St || typeof window.St.PageFlip !== 'function') {
+                loadingText.textContent = 'ไม่สามารถโหลดระบบเปิดแคตตาล็อกได้';
+                showStatus('โหลด PageFlip ไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตหรือดาวน์โหลดไฟล์ไลบรารีมาใช้งานภายในเว็บไซต์');
+                hideLoading();
+                return;
+            }
+
+            try {
+                pageFlip = new window.St.PageFlip(bookElement, {
+                    width: PAGE_WIDTH,
+                    height: PAGE_HEIGHT,
+                    size: 'stretch',
+                    minWidth: 280,
+                    maxWidth: 1600,
+                    minHeight: 396,
+                    maxHeight: 2246,
+                    maxShadowOpacity: 0.45,
+                    showCover: true,
+                    mobileScrollSupport: false,
+                    usePortrait: true,
+                    autoSize: true,
+                    drawShadow: true,
+                    flippingTime: 620,
+                    clickEventForward: true,
+                    swipeDistance: 24,
+                    showPageCorners: false,
+                    disableFlipByClick: false // แตะค้างและลากหน้ากระดาษได้โดยตรง
+                });
+
+                pageFlip.loadFromHTML(pages);
+
+                pageFlip.on('init', () => {
+                    refreshPageFlipLayout(true);
+                    window.setTimeout(hideLoading, 250);
+                });
+
+                pageFlip.on('flip', (event) => {
+                    updateControls(event);
+                    resetZoom();
+                });
+
+                pageFlip.on('changeOrientation', updateControls);
+
+                pageFlip.on('changeState', (event) => {
+                    isFlipping = event.data !== 'read';
+                    if (!isFlipping) updateControls();
+                });
+            } catch (error) {
+                console.error(error);
+                showStatus('เกิดข้อผิดพลาดขณะเริ่มต้นแคตตาล็อก กรุณาเปิด Console เพื่อตรวจสอบรายละเอียด');
+                hideLoading();
+            }
+        }
+
+        function goFirst() {
+            if (pageFlip && !isFlipping && !firstBtn.disabled) {
+                pageFlip.turnToPage(0);
+                updateControls();
+                resetZoom();
+            }
+        }
+
+        function goPrevious() {
+            if (pageFlip && !isFlipping && !prevBtn.disabled) pageFlip.flipPrev();
+        }
+
+        function goNext() {
+            if (pageFlip && !isFlipping && !nextBtn.disabled) pageFlip.flipNext();
+        }
+
+        function goLast() {
+            if (pageFlip && !isFlipping && !lastBtn.disabled) {
+                pageFlip.turnToPage(pageFlip.getPageCount() - 1);
+                updateControls();
+                resetZoom();
+            }
+        }
+
+        async function toggleFullscreen() {
+            try {
+                if (!document.fullscreenElement) {
+                    const request = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen;
+                    if (!request) throw new Error('Fullscreen API is not supported');
+                    await request.call(document.documentElement);
+                } else {
+                    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                    if (exit) await exit.call(document);
+                }
+            } catch (error) {
+                console.error(error);
+                showStatus('เบราว์เซอร์นี้ไม่อนุญาตให้เปิดเต็มหน้าจอ');
+            }
+        }
+
+        function updateFullscreenButton() {
+            const active = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+            fullscreenBtn.textContent = active ? '✕' : '⛶';
+            fullscreenBtn.title = active ? 'ออกจากเต็มหน้าจอ' : 'เปิดเต็มหน้าจอ';
+            fullscreenBtn.setAttribute('aria-label', fullscreenBtn.title);
+            window.setTimeout(() => {
+                setAppHeight();
+                refreshPageFlipLayout(true);
+            }, 120);
+        }
+
+        function touchDistance(touches) {
+            return Math.hypot(
+                touches[0].clientX - touches[1].clientX,
+                touches[0].clientY - touches[1].clientY
+            );
+        }
+
+        viewerStage.addEventListener('touchstart', (event) => {
+            if (event.touches.length === 2) {
+                assistTouch = null;
+                isPinching = true;
+                pinchStartDistance = touchDistance(event.touches);
+                pinchStartScale = currentScale;
+                bookWrapper.style.transition = 'none';
+                event.preventDefault();
+                return;
+            }
+
+            if (event.touches.length === 1) {
+                isPinching = false;
+                const touch = event.touches[0];
+                const startedOnBook = Boolean(event.target.closest('.stf__parent, .stf__wrapper, .stf__item, .page, #book'));
+
+                assistTouch = startedOnBook && currentScale <= 1.01 && pageFlip ? {
+                    startX: touch.clientX,
+                    startY: touch.clientY,
+                    lastX: touch.clientX,
+                    lastY: touch.clientY,
+                    startedAt: performance.now(),
+                    pageIndex: pageFlip.getCurrentPageIndex()
+                } : null;
+
+                const now = Date.now();
+                if (now - lastTapTime > 0 && now - lastTapTime < 260) {
+                    assistTouch = null;
+                    applyZoom(currentScale > 1 ? 1 : 2);
+                    event.preventDefault();
+                }
+                lastTapTime = now;
+            }
+        }, { passive: false });
+
+        viewerStage.addEventListener('touchmove', (event) => {
+            if (event.touches.length === 2 && pinchStartDistance) {
+                assistTouch = null;
+                const ratio = touchDistance(event.touches) / pinchStartDistance;
+                applyZoom(pinchStartScale * ratio, false);
+                event.preventDefault();
+                return;
+            }
+
+            if (event.touches.length === 1 && assistTouch) {
+                assistTouch.lastX = event.touches[0].clientX;
+                assistTouch.lastY = event.touches[0].clientY;
+            }
+        }, { passive: false });
+
+        function finishTouchGesture(event) {
+            const completedTouch = assistTouch;
+            assistTouch = null;
+
+            if (!event.touches || event.touches.length < 2) {
+                pinchStartDistance = 0;
+                isPinching = false;
+                bookWrapper.style.transition = 'transform .28s ease';
+            }
+
+            if (!completedTouch || !pageFlip || currentScale > 1.01 || event.type === 'touchcancel') return;
+
+            const changedX = completedTouch.lastX - completedTouch.startX;
+            const changedY = completedTouch.lastY - completedTouch.startY;
+            const horizontalDistance = Math.abs(changedX);
+            const duration = performance.now() - completedTouch.startedAt;
+            const visiblePageWidth = Math.max(1, bookWrapper.getBoundingClientRect().width / (pageFlip.getOrientation() === 'landscape' ? 2 : 1));
+            const requiredDistance = Math.max(ASSIST_SWIPE_MIN_PX, visiblePageWidth * ASSIST_SWIPE_RATIO);
+            const isHorizontal = horizontalDistance > Math.abs(changedY) * 1.15;
+            const isIntentional = horizontalDistance >= requiredDistance && duration <= 1600 && isHorizontal;
+
+            if (!isIntentional) return;
+
+            // รอให้ PageFlip จบการประมวลผล gesture เดิมก่อน เพื่อป้องกันการพลิกซ้ำ
+            window.setTimeout(() => {
+                if (!pageFlip || isFlipping) return;
+                if (pageFlip.getCurrentPageIndex() !== completedTouch.pageIndex) return;
+                if (changedX < 0) goNext();
+                else goPrevious();
+            }, 55);
+        }
+
+        viewerStage.addEventListener('touchend', finishTouchGesture, { passive: true });
+        viewerStage.addEventListener('touchcancel', finishTouchGesture, { passive: true });
+
+        firstBtn.addEventListener('click', goFirst);
+        prevBtn.addEventListener('click', goPrevious);
+        nextBtn.addEventListener('click', goNext);
+        lastBtn.addEventListener('click', goLast);
+        resetZoomBtn.addEventListener('click', resetZoom);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                event.preventDefault();
+                goPrevious();
+            } else if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+                event.preventDefault();
+                goNext();
+            } else if (event.key === 'Home') {
+                goFirst();
+            } else if (event.key === 'End') {
+                goLast();
+            } else if (event.key === 'Escape' && currentScale > 1) {
+                resetZoom();
+            }
+        });
+
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+
+        const onViewportChange = () => {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(() => {
+                setAppHeight();
+                resetZoom();
+                refreshPageFlipLayout();
+            }, 90);
+        };
+
+        window.addEventListener('resize', onViewportChange, { passive: true });
+        window.addEventListener('orientationchange', () => {
+            window.setTimeout(() => {
+                setAppHeight();
+                resetZoom();
+                refreshPageFlipLayout(true);
+            }, 180);
+        }, { passive: true });
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', onViewportChange, { passive: true });
+        }
+
+        if ('ResizeObserver' in window) {
+            resizeObserver = new ResizeObserver(() => onViewportChange());
+            resizeObserver.observe(viewerStage);
+        }
+
+        window.addEventListener('pageshow', () => {
+            setAppHeight();
+            refreshPageFlipLayout(true);
+        }, { passive: true });
+
+        setAppHeight();
+        const startupFrame = fitBookFrame();
+        lastFrameWidth = startupFrame.width;
+        lastFrameHeight = startupFrame.height;
+        markPageSides();
+        prepareImages();
+        initializeBook();
+    })();
+    </script>
+</body>
+</html>

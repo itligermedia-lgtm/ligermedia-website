@@ -1,0 +1,69 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3rem","bottom":"5rem","left":"1.5rem","right":"1.5rem"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="padding-top:3rem;padding-right:1.5rem;padding-bottom:5rem;padding-left:1.5rem">
+	
+	<!-- Breadcrumb -->
+	<nav aria-label="Breadcrumb" style="margin-bottom:1.75rem;font-size:0.85rem;color:#6B7280;display:flex;align-items:center;gap:6px;">
+		<a href="/ligermedia/" style="color:#6B7280;text-decoration:none;">หน้าแรก</a>
+		<span>/</span>
+		<a href="/ligermedia/products/" style="color:#6B7280;text-decoration:none;">ผลิตภัณฑ์</a>
+	</nav>
+
+	<!-- Main Product Header Columns -->
+	<!-- wp:columns {"style":{"spacing":{"blockGap":"3.5rem"}}} -->
+	<div class="wp-block-columns">
+		
+		<!-- Left: Image Showcase (Nike Style Multi-Angle Gallery) -->
+		<!-- wp:column {"width":"58%"} -->
+		<div class="wp-block-column" style="flex-basis:58%">
+			<!-- wp:shortcode -->
+			[liger_nike_gallery]
+			<!-- /wp:shortcode -->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- Right: Title, Specs Summary & Actions -->
+		<!-- wp:column {"width":"42%"} -->
+		<div class="wp-block-column" style="flex-basis:42%">
+			<!-- wp:post-title {"level":1,"style":{"typography":{"fontSize":"clamp(2rem, 3vw, 2.5rem)","fontWeight":"800","lineHeight":"1.2"},"spacing":{"margin":{"top":"0rem","bottom":"1rem"}}},"textColor":"liger-black"} /-->
+			
+			<!-- wp:post-excerpt {"style":{"typography":{"fontSize":"1.05rem","lineHeight":"1.7"},"color":{"text":"#484F58"}}} /-->
+
+			<div style="display:flex;gap:12px;margin-top:2rem;flex-wrap:wrap;">
+				<a href="#liger-specs" class="ds-btn ds-btn--secondary">
+					<span>ดูตารางสเปกทางเทคนิค (TDS) ↓</span>
+				</a>
+			</div>
+		</div>
+		<!-- /wp:column -->
+
+	</div>
+	<!-- /wp:columns -->
+
+	<!-- Full Description Body -->
+	<!-- wp:group {"style":{"spacing":{"margin":{"top":"3.5rem"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group" style="margin-top:3.5rem">
+		<h3 style="font-size:1.4rem;font-weight:700;color:#0D1117;margin-bottom:1rem;border-bottom:2px solid #0D1117;display:inline-block;padding-bottom:4px;">
+			รายละเอียดและจุดเด่นของวัสดุ
+		</h3>
+		<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- Dynamic Technical Specs Section -->
+	<div id="liger-specs">
+		<!-- wp:shortcode -->
+		[liger_product_specs]
+		<!-- /wp:shortcode -->
+	</div>
+
+	<!-- Related Materials & Products You Might Like (Nike Style) -->
+	[liger_related_products]
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"cta-banner"} /-->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

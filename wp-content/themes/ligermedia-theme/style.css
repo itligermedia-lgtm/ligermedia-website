@@ -1,0 +1,24 @@
+/*
+Theme Name: LIGER MEDIA
+Theme URI: https://ligermedia.co.th
+Author: Senior WP Developer & UI/UX Team
+Author URI: https://ligermedia.co.th
+Description: Premium Modern Industrial WordPress Block Theme for LIGER MEDIA — Leading Importer and Distributor of Architectural Cladding, Signage Materials, and Digital Print Media.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ligermedia
+Tags: full-site-editing, block-themes, industrial, corporate, modern, e-commerce, custom-colors, custom-header, flexible-header
+*/
+
+/* Reset & Fallbacks for WP Core compatibility */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}

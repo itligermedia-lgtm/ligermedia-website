@@ -1,0 +1,766 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- Hero Section: Modern 3D Resource & Specification Center -->
+<div class="wp-block-group alignfull liger-cat-hero nike-archive-header" style="background-image:linear-gradient(180deg, rgba(11, 14, 20, 0.72) 0%, rgba(11, 14, 20, 0.90) 100%), url('/ligermedia/wp-content/themes/ligermedia-theme/assets/images/hero-facade.webp') !important;">
+	<div class="alignwide liger-cat-hero-inner nike-archive-header-inner">
+		<h1 class="liger-cat-hero-title" data-reveal="up">
+			ศูนย์รวมแคตตาล็อก, TDS & สเปกวิศวกรรม<span style="color:#FF5500;">.</span>
+		</h1>
+		<p class="liger-cat-hero-subtitle" data-reveal="up" data-reveal-delay="1">
+			ดาวน์โหลดเอกสารรับรองมาตรฐานสากล ผลทดสอบกันไฟ ASTM E84 แคตตาล็อกสินค้า และคู่มือติดตั้งครบทั้ง 8 หมวดผลิตภัณฑ์
+		</p>
+	</div>
+</div>
+
+<!-- Nike Sub-Header & Filter Control Bar (Sticky) -->
+<div class="nike-subnav-bar" id="nike-catalogs-subnav-bar" style="margin-top:0!important;">
+	<div class="alignwide nike-subnav-inner">
+		<div class="nike-subnav-left">
+			<span class="nike-subnav-breadcrumb">
+				แคตตาล็อก &amp; สเปกวิศวกรรม (<span id="nike-catalogs-live-count">16</span> เอกสาร)
+			</span>
+		</div>
+		<div class="nike-subnav-right">
+			<!-- Desktop Hide/Show Filter Button -->
+			<button type="button" class="nike-filter-toggle-btn" id="nike-catalogs-filter-toggle" aria-expanded="true">
+				<span class="nike-filter-btn-text">ซ่อนตัวกรอง</span>
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nike-filter-icon"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+			</button>
+
+			<!-- Mobile Filter Button -->
+			<button type="button" class="nike-mobile-filter-btn" id="nike-catalogs-mobile-filter-btn">
+				<span>ตัวกรอง &amp; หมวดหมู่</span>
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10m-8 6h6"/></svg>
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Main Nike Two-Column Layout (Left Sidebar + Right Catalogs Content) -->
+<div class="wp-block-group alignwide nike-shop-wrapper" id="nike-catalogs-layout">
+	
+	<!-- LEFT SIDEBAR: Nike-Style Material Filters & Real-Time Search -->
+	<aside class="nike-shop-sidebar" id="nike-catalogs-sidebar">
+		<div class="nike-sidebar-inner">
+			
+			<!-- Mobile Close Button -->
+			<div class="nike-sidebar-mobile-header">
+				<span style="font-weight:700;font-size:1.1rem;color:#111;">ตัวกรองเอกสาร</span>
+				<button type="button" class="nike-sidebar-close" id="nike-catalogs-sidebar-close-btn" aria-label="Close filters">✕</button>
+			</div>
+
+			<!-- Section 1: 8 Core Material Families -->
+			<div class="nike-filter-group">
+				<button type="button" class="nike-filter-group-header" aria-expanded="true">
+					<span class="nike-filter-title">หมวดหมู่วัสดุ</span>
+					<svg class="nike-filter-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+				</button>
+				<div class="nike-filter-group-content">
+					<ul class="nike-cat-nav-list" id="liger-cat-nav-list">
+						<li>
+							<button type="button" class="nike-cat-btn is-active liger-cat-tab" data-filter="all">
+								<span>ทั้งหมด (All Documents)</span>
+								<span class="nike-cat-count">16</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="acp">
+								<span>แผ่นอลูมิเนียมคอมโพสิต</span>
+								<span class="nike-cat-count">3</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="interior">
+								<span>สติกเกอร์อินทีเรียร์ฟิล์ม</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="sticker">
+								<span>สติกเกอร์งานป้าย &amp; ยานยนต์</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="vinyl">
+								<span>ผ้าไวนิลตู้ไฟ &amp; บิลบอร์ด</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="pvc-sheet">
+								<span>แผ่นพลาสวูด &amp; อะคริลิก</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="inkjet">
+								<span>มีเดียงานพิมพ์ดิจิทัล</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="led">
+								<span>โมดูลไฟ Liponix LED</span>
+								<span class="nike-cat-count">2</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="nike-cat-btn liger-cat-tab" data-filter="accessories">
+								<span>อุปกรณ์ติดตั้ง &amp; เทปยก</span>
+								<span class="nike-cat-count">1</span>
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Section 2: Document Types -->
+			<div class="nike-filter-group">
+				<button type="button" class="nike-filter-group-header" aria-expanded="true">
+					<span class="nike-filter-title">ประเภทเอกสาร</span>
+					<svg class="nike-filter-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+				</button>
+				<div class="nike-filter-group-content">
+					<div class="nike-filter-options">
+						<label class="nike-checkbox-label">
+							<input type="checkbox" checked disabled />
+							<span class="nike-custom-check"></span>
+							<span class="nike-check-text">แคตตาล็อกสินค้าฉบับเต็ม (Full PDF)</span>
+						</label>
+						<label class="nike-checkbox-label">
+							<input type="checkbox" checked disabled />
+							<span class="nike-custom-check"></span>
+							<span class="nike-check-text">ข้อมูลสเปกวิศวกรรม (TDS)</span>
+						</label>
+						<label class="nike-checkbox-label">
+							<input type="checkbox" checked disabled />
+							<span class="nike-custom-check"></span>
+							<span class="nike-check-text">ผลทดสอบกันไฟ (ASTM / มอก.)</span>
+						</label>
+						<label class="nike-checkbox-label">
+							<input type="checkbox" checked disabled />
+							<span class="nike-custom-check"></span>
+							<span class="nike-check-text">คู่มือการติดตั้ง &amp; ตัดพับ</span>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Direct Sample Kit Box -->
+			<div class="nike-sidebar-sample-box">
+				<div class="nike-sample-text">ต้องการชิ้นงานตัวอย่างจริงเพื่อตรวจสเปกโครงการ?</div>
+				<button type="button" class="nike-sidebar-sample-btn" data-open-quote-modal="true" data-product-name="ขอรับชุดตัวอย่างวัสดุ LIGER MEDIA (Sample Box สำหรับสเปกแคตตาล็อก)">
+					ขอรับตัวอย่างฟรี
+				</button>
+			</div>
+
+		</div>
+	</aside>
+
+	<!-- Mobile Backdrop Overlay -->
+	<div class="nike-sidebar-backdrop" id="nike-catalogs-sidebar-backdrop"></div>
+
+	<!-- RIGHT CONTENT AREA -->
+	<main class="nike-shop-main" id="nike-catalogs-main">
+
+		<!-- Resource Cards Grid -->
+		<div class="liger-cat-grid" id="liger-cat-grid">
+			
+			<!-- Item 1: Master Profile & Full Catalog -->
+			<div class="liger-cat-card" data-catalog-slug="master-profile" data-category="all" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่ม Company Profile & แคตตาล็อกรวมวัสดุทั้ง 8 หมวด" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">CORPORATE PROFILE</span>
+						<div class="liger-cat-cover-title">LIGER MEDIA</div>
+						<div class="liger-cat-cover-sub">Master Material Catalog 2026</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">14.8 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">เล่ม Company Profile & แคตตาล็อกรวมวัสดุทั้ง 8 หมวด</h3>
+					<p class="liger-cat-desc">
+						รวมข้อมูลองค์กร ศักยภาพคลังสินค้า และรายการวัสดุคอมโพสิต สติกเกอร์ ไวนิล อะคริลิก และ LED ครบทุกซีรีส์
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่ม Company Profile & แคตตาล็อกรวมวัสดุทั้ง 8 หมวด" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="เล่ม_Company_Profile___แคตตาล็อกรวมวัสดุทั้ง_8_หมวด.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 2: Sky-High ACP Color Swatch -->
+			<div class="liger-cat-card" data-catalog-slug="sky-high-acp" data-category="acp" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--orange" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="ชาร์ตสีแผ่นอลูมิเนียมคอมโพสิต Sky-High ACP 2024" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">COLOR SWATCH</span>
+						<div class="liger-cat-cover-title">SKY-HIGH ACP</div>
+						<div class="liger-cat-cover-sub">Architectural Color Chart</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">8.2 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">ชาร์ตสีแผ่นอลูมิเนียมคอมโพสิต Sky-High ACP</h3>
+					<p class="liger-cat-desc">
+						เฉดสี Solid, Metallic, Sparkle ระบบเคลือบสี PVDF Kynar 500 ทนทานสภาพอากาศ 15 ปี สำหรับงานฟาซาดอาคาร
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="ชาร์ตสีแผ่นอลูมิเนียมคอมโพสิต Sky-High ACP 2024" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="ชาร์ตสีแผ่นอลูมิเนียมคอมโพสิต_Sky_High_ACP.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 3: TDS Sky-High ACP A2 Fire Certificate -->
+			<div class="liger-cat-card" data-catalog-slug="sky-high-acp-tds" data-category="acp" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="TDS & รายงานผลทดสอบกันไฟ Class A2 (Sky-High ACP)" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">FIRE CERTIFICATE</span>
+						<div class="liger-cat-cover-title">ASTM E84 & EN A2</div>
+						<div class="liger-cat-cover-sub">Fire Safety Test Report</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">3.4 MB</span>
+						<span class="liger-date-tag">ASTM & EN 13501</span>
+					</div>
+					<h3 class="liger-cat-title">TDS & รายงานผลทดสอบกันไฟ Class A2 (Sky-High ACP)</h3>
+					<p class="liger-cat-desc">
+						เอกสารทางวิศวกรรมรับรองผลการทดสอบไส้แร่ธาตุไม่ติดไฟ (Mineral Core) ตามมาตรฐานสากล ASTM E84 และ EN 13501-1
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="TDS & รายงานผลทดสอบกันไฟ Class A2 (Sky-High ACP)" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="TDS___รายงานผลทดสอบกันไฟ_Class_A2__Sky_High_ACP_.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 4: TIGON Surface Interior Film -->
+			<div class="liger-cat-card" data-catalog-slug="tigon" data-category="interior" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--wood" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/tigon/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่มตัวอย่าง TIGON Surface Interior Film" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">INTERIOR FILM</span>
+						<div class="liger-cat-cover-title">TIGON FILM</div>
+						<div class="liger-cat-cover-sub">Wood, Marble & Story Series</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">9.1 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">เล่มตัวอย่าง TIGON Surface Interior Film</h3>
+					<p class="liger-cat-desc">
+						สติกเกอร์ฟิล์มตกแต่งผนังลายหินอ่อน ลายไม้ธรรมชาติ ลายขนแมว Stainless Hairline และโทนสี Story สำหรับอินทีเรียร์
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/tigon/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่มตัวอย่าง TIGON Surface Interior Film" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="เล่มตัวอย่าง_TIGON_Surface_Interior_Film.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 5: Supremo CLPL Woodgrain Swatch -->
+			<div class="liger-cat-card" data-catalog-slug="supremo-clpl" data-category="interior" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--wood" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/tigon/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่มตัวอย่างลามิเนตลายไม้สถาปัตยกรรม Supremo CLPL" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">ARCHITECTURAL LAMINATE</span>
+						<div class="liger-cat-cover-title">SUPREMO CLPL</div>
+						<div class="liger-cat-cover-sub">Natural 3D Texture Swatch</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">6.5 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">เล่มตัวอย่างลามิเนตลายไม้สถาปัตยกรรม Supremo CLPL</h3>
+					<p class="liger-cat-desc">
+						ชาร์ตลายไม้ธรรมชาติ 3D Texture ทนชื้น 100% สำหรับกรุผนัง ฝ้าเพดาน และงานฟาซาดระแนงอาคาร
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="เล่มตัวอย่างลามิเนตลายไม้สถาปัตยกรรม Supremo CLPL" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="เล่มตัวอย่างลามิเนตลายไม้สถาปัตยกรรม_Supremo_CLPL.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 6: Mactac Glass Décor (Sticker) -->
+			<div class="liger-cat-card" data-catalog-slug="mactac-glass-decor" data-category="sticker" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="ชาร์ตสีสติกเกอร์ฝ้าติดกระจก Mactac Macal Glass Décor" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">GLASS DÉCOR</span>
+						<div class="liger-cat-cover-title">MACTAC 600/700</div>
+						<div class="liger-cat-cover-sub">Frosted & Sandblast Film</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">4.2 MB</span>
+						<span class="liger-date-tag">Mactac Belgium</span>
+					</div>
+					<h3 class="liger-cat-title">ชาร์ตสีสติกเกอร์ฝ้าติดกระจก Mactac Macal Glass Décor</h3>
+					<p class="liger-cat-desc">
+						ฟิล์มฝ้าติดกระจกลายพ่นทราย กัดทราย กาวเสมอกันไม่เป็นคลื่น เหมาะสำหรับกั้นห้องกระจกสำนักงานและโชว์รูม
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="ชาร์ตสีสติกเกอร์ฝ้าติดกระจก Mactac Macal Glass Décor" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="ชาร์ตสีสติกเกอร์ฝ้าติดกระจก_Mactac_Macal_Glass_D_cor.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 7: Mactac 9800 Pro & Avery FC (Sticker) -->
+			<div class="liger-cat-card" data-catalog-slug="mactac-9800-pro" data-category="sticker" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกสติกเกอร์เกรด 7-8 ปี Mactac 9800 Pro & Avery" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">7-8 YEARS SIGNAGE</span>
+						<div class="liger-cat-cover-title">MACTAC 9800 PRO</div>
+						<div class="liger-cat-cover-sub">High-Performance Graphic Vinyl</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">5.8 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกสติกเกอร์เกรด 7-8 ปี Mactac 9800 Pro & Avery</h3>
+					<p class="liger-cat-desc">
+						ชาร์ตสีกราฟิกภายนอก ฟิล์มโพลีเมอริก 66 ไมครอน สำหรับงานแร็ปรถ งานป้ายตู้ไฟ และสติกเกอร์สะท้อนแสง
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกสติกเกอร์เกรด 7-8 ปี Mactac 9800 Pro & Avery" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกสติกเกอร์เกรด_7_8_ปี_Mactac_9800_Pro___Avery.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 8: Heytex Sign Backlit Vinyl (Vinyl) -->
+			<div class="liger-cat-card" data-catalog-slug="super-acrylic" data-category="vinyl" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกผ้าไวนิลโปร่งแสงตู้ไฟ Heytex Sign (เยอรมนี)" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">PREMIUM BACKLIT</span>
+						<div class="liger-cat-cover-title">HEYTEX SIGN</div>
+						<div class="liger-cat-cover-sub">5-Year German Quality Vinyl</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">4.8 MB</span>
+						<span class="liger-date-tag">Made in Germany</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกผ้าไวนิลโปร่งแสงตู้ไฟ Heytex Sign (เยอรมนี)</h3>
+					<p class="liger-cat-desc">
+						ผ้าไวนิลโปร่งแสงคุณภาพสูง อายุงาน 5 ปี ไร้รอยต่อ แสงสว่างสม่ำเสมอ สำหรับงานป้ายทาวเวอร์และกล่องไฟสถาปัตยกรรม
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกผ้าไวนิลโปร่งแสงตู้ไฟ Heytex Sign (เยอรมนี)" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกผ้าไวนิลโปร่งแสงตู้ไฟ_Heytex_Sign__เยอรมนี_.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 9: Smart Jet 1000D Billboard Vinyl (Vinyl) -->
+			<div class="liger-cat-card" data-catalog-slug="acrylic-diffuser" data-category="vinyl" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="สเปกผ้าไวนิลบิลบอร์ดทางด่วน Smart Jet 1000D" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">HIGH TENACITY 1000D</span>
+						<div class="liger-cat-cover-title">SMART JET VINYL</div>
+						<div class="liger-cat-cover-sub">Heavy-Duty Billboard Media</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">5.2 MB</span>
+						<span class="liger-date-tag">Frontlit & Backlit</span>
+					</div>
+					<h3 class="liger-cat-title">สเปกผ้าไวนิลบิลบอร์ดทางด่วน Smart Jet 1000D</h3>
+					<p class="liger-cat-desc">
+						ไวนิลทึบแสงและโปร่งแสงแรงดึงสูงพิเศษ 1000x1000 Denier หน้ากว้างสูงสุด 5 เมตร ทนแรงลมพายุและแดดเมืองไทย
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="สเปกผ้าไวนิลบิลบอร์ดทางด่วน Smart Jet 1000D" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="สเปกผ้าไวนิลบิลบอร์ดทางด่วน_Smart_Jet_1000D.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 10: Supreme Cast Acrylic ABS & Moden Glas (PVC Sheet) -->
+			<div class="liger-cat-card" data-catalog-slug="acrylic-color-chart" data-category="pvc-sheet" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกแผ่นอะคริลิกหล่อ Supreme Acrylic & Moden Glas" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">92% CLARITY</span>
+						<div class="liger-cat-cover-title">SUPREME ACRYLIC</div>
+						<div class="liger-cat-cover-sub">Cast Acrylic & ABS Sheet</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">7.4 MB</span>
+						<span class="liger-date-tag">Cast & Extruded</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกแผ่นอะคริลิกหล่อ Supreme Acrylic & Moden Glas</h3>
+					<p class="liger-cat-desc">
+						ความใสแสงผ่าน 92% ตัดเลเซอร์ขอบเงาไม่ร้าว พร้อมแผ่นอะคริลิกสี Sweet Candy และแผ่น Acrylic ABS เหนียวทนแรงกระแทก
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกแผ่นอะคริลิกหล่อ Supreme Acrylic & Moden Glas" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกแผ่นอะคริลิกหล่อ_Supreme_Acrylic___Moden_Glas.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 11: Siam Plastwood มอก. (PVC Sheet) -->
+			<div class="liger-cat-card" data-catalog-slug="plastwood" data-category="pvc-sheet" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกแผ่นพลาสวูด Siam Plastwood มอก." style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">มอก. CERTIFIED</span>
+						<div class="liger-cat-cover-title">SIAM PLASTWOOD</div>
+						<div class="liger-cat-cover-sub">100% Waterproof PVC Foam</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">4.6 MB</span>
+						<span class="liger-date-tag">มอก. มาตรฐานไทย</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกแผ่นพลาสวูด Siam Plastwood มอก.</h3>
+					<p class="liger-cat-desc">
+						แผ่นโฟมพีวีซีแข็งเนื้อแน่นพิเศษ หนา 3 - 25 มม. กันน้ำ 100% ปลวกไม่กิน ตัด CNC คมกริบ พร้อมแผ่น PP Board และ Foam Board
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกแผ่นพลาสวูด Siam Plastwood มอก." title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกแผ่นพลาสวูด_Siam_Plastwood_มอก_.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 12: Mactac Inkjet JT 5828 & WallWrap (Inkjet Media) -->
+			<div class="liger-cat-card" data-catalog-slug="mactac-jt5828" data-category="inkjet" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="คู่มือสเปกสติกเกอร์พิมพ์ Mactac JT 5828 & WallWrap" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">DIGITAL PRINT</span>
+						<div class="liger-cat-cover-title">MACTAC INKJET</div>
+						<div class="liger-cat-cover-sub">Car Wrap & WallWrap Media</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">6.8 MB</span>
+						<span class="liger-date-tag">Mactac JT Series</span>
+					</div>
+					<h3 class="liger-cat-title">คู่มือสเปกสติกเกอร์พิมพ์ Mactac JT 5828 & WallWrap</h3>
+					<p class="liger-cat-desc">
+						สติกเกอร์พิมพ์เกรดยานยนต์ กาว Removable ไม่ทิ้งคราบ และสติกเกอร์ WallWrap ติดปูนเปลือย พร้อมฟิล์มเคลือบกันรอย UV
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="คู่มือสเปกสติกเกอร์พิมพ์ Mactac JT 5828 & WallWrap" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="คู่มือสเปกสติกเกอร์พิมพ์_Mactac_JT_5828___WallWrap.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 13: Heyblue Textile & FloorShark (Inkjet Media) -->
+			<div class="liger-cat-card" data-catalog-slug="heyblue-textile" data-category="inkjet" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="สเปกผ้าพิมพ์ตู้ไฟ Heyblue Textile & ฟิล์มติดพื้น KernowJet" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">SPECIALTY MEDIA</span>
+						<div class="liger-cat-cover-title">HEYBLUE & FLOORSHARK</div>
+						<div class="liger-cat-cover-sub">Fabric Lightbox & Floor Graphics</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">4.5 MB</span>
+						<span class="liger-date-tag">Textile & Floor</span>
+					</div>
+					<h3 class="liger-cat-title">สเปกผ้าพิมพ์ตู้ไฟ Heyblue Textile & ฟิล์มติดพื้น KernowJet</h3>
+					<p class="liger-cat-desc">
+						ผ้าขึงตู้ไฟ Deco Light ไร้ขอบ แสงนุ่มเนียนตา และฟิล์ม FloorShark ติดพื้นกันลื่นมาตรฐาน R10 ไม่ต้องเคลือบทับ
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="สเปกผ้าพิมพ์ตู้ไฟ Heyblue Textile & ฟิล์มติดพื้น KernowJet" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="สเปกผ้าพิมพ์ตู้ไฟ_Heyblue_Textile___ฟิล์มติดพื้น_KernowJet.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 14: Liponix LED Modules 160° & Power Supply (LIPONIX LED) -->
+			<div class="liger-cat-card" data-catalog-slug="liponix-led" data-category="led" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="คู่มือสเปกและสูตรคำนวณ Liponix LED โมดูล 160°" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">160° OPTICAL LENS</span>
+						<div class="liger-cat-cover-title">LIPONIX LED</div>
+						<div class="liger-cat-cover-sub">IP67 Waterproof Modules & Power</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">6.1 MB</span>
+						<span class="liger-date-tag">CE & RoHS Certified</span>
+					</div>
+					<h3 class="liger-cat-title">คู่มือสเปกและสูตรคำนวณ Liponix LED โมดูล 160°</h3>
+					<p class="liger-cat-desc">
+						ตารางระยะวางโมดูล, จำนวนวัตต์ต่อตู้ไฟ, หม้อแปลงกันฝน 12V Switching Power Supply พร้อมมาตรฐานกันน้ำ IP67
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="คู่มือสเปกและสูตรคำนวณ Liponix LED โมดูล 160°" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="คู่มือสเปกและสูตรคำนวณ_Liponix_LED_โมดูล_160_.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 15: Liponix Commercial & Architectural Lighting (LIPONIX LED) -->
+			<div class="liger-cat-card" data-catalog-slug="liponix-lighting" data-category="led" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกโคมไฟอุตสาหกรรม Liponix Commercial Lighting" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">ARCHITECTURAL LIGHTING</span>
+						<div class="liger-cat-cover-title">LIPONIX COMMERCIAL</div>
+						<div class="liger-cat-cover-sub">Flood, High Bay & Street Lights</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">5.7 MB</span>
+						<span class="liger-date-tag">อัปเดต 2026</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกโคมไฟอุตสาหกรรม Liponix Commercial Lighting</h3>
+					<p class="liger-cat-desc">
+						โคมสปอตไลท์ Flood Light, โคมโรงงาน High Bay, โคมถนน Street Light, LED Strip และ LED Display Kiosk
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกโคมไฟอุตสาหกรรม Liponix Commercial Lighting" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกโคมไฟอุตสาหกรรม_Liponix_Commercial_Lighting.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Item 16: Accessories (American Biltrite, Dow Corning & Tools) -->
+			<div class="liger-cat-card" data-catalog-slug="tape-accessories" data-category="accessories" data-reveal="up">
+				<div class="liger-cat-cover-wrap liger-cover--dark" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกเทปยก American Biltrite & อุปกรณ์ติดตั้ง" style="cursor:pointer;" title="คลิกเพื่อเปิดอ่าน 3D Flipbook">
+					<div class="liger-cat-spine"></div>
+					<div class="liger-cat-cover-content">
+						<span class="liger-cat-badge-pill">TOOLS & ACCESSORIES</span>
+						<div class="liger-cat-cover-title">LIGER TOOLS</div>
+						<div class="liger-cat-cover-sub">Application Tape & Silicone</div>
+						<div class="liger-cat-cover-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+					</div>
+				</div>
+				<div class="liger-cat-body">
+					<div class="liger-cat-meta-row">
+						<span class="liger-file-tag">PDF</span>
+						<span class="liger-size-tag">3.9 MB</span>
+						<span class="liger-date-tag">อุปกรณ์ช่างแท้</span>
+					</div>
+					<h3 class="liger-cat-title">แคตตาล็อกเทปยก American Biltrite & อุปกรณ์ติดตั้ง</h3>
+					<p class="liger-cat-desc">
+						เทปยกสติกเกอร์ AT 6582/6592, ซิลิโคนโครงสร้าง Dow Corning, โฟมเส้น Backing Rod, ใบมีดเซาะร่อง และเกรียงรีด Mactac
+					</p>
+					
+					<div class="liger-cat-actions">
+						<button type="button" class="liger-cat-btn liger-cat-btn--flip" data-open-flipbook="true" data-ebook-url="/ligermedia/ebook/composite/index.html" data-pdf-url="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" data-pdf-title="แคตตาล็อกเทปยก American Biltrite & อุปกรณ์ติดตั้ง" title="เปิดอ่านเล่มแคตตาล็อกแบบพลิกหน้า 3D">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+							<span>เปิดอ่านแบบ Flipbook</span>
+						</button>
+						<a href="/ligermedia/wp-content/uploads/catalogs/liger-master-catalog-2026.pdf" download="แคตตาล็อกเทปยก_American_Biltrite___อุปกรณ์ติดตั้ง.pdf" class="liger-cat-btn liger-cat-btn--dl" title="ดาวน์โหลดไฟล์ PDF ต้นฉบับ">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+							<span>ดาวน์โหลด PDF</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- No Results Feedback (Hidden by default) -->
+		<div id="liger-cat-no-results" class="liger-cat-empty-state" style="display:none;">
+			<div style="margin-bottom:0.75rem;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+			<h4 style="font-size:1.25rem;font-weight:700;color:#0D1117;margin:0 0 0.5rem 0;">ไม่พบเอกสารที่ค้นหา</h4>
+			<p style="color:#6E7781;font-size:0.95rem;margin:0 0 1.5rem 0;">ลองค้นหาด้วยคำอื่น หรือกดล้างการค้นหาเพื่อดูเอกสารทั้งหมด</p>
+			<button type="button" class="liger-btn liger-btn--primary" id="liger-cat-reset-btn">ดูเอกสารทั้งหมด</button>
+		</div>
+
+		<!-- Bottom Callout: Request Physical Sample Box -->
+		<div class="liger-cat-sample-callout" data-reveal="up">
+			<div class="liger-cat-callout-text">
+				<h3 style="font-size:1.6rem;font-weight:800;color:#FFFFFF;margin:0 0 0.5rem 0;">
+					ต้องการสัมผัสเนื้อวัสดุจริงก่อนตัดสินใจระบุสเปก?
+				</h3>
+				<p style="color:#A0A6B1;font-size:0.975rem;line-height:1.6;margin:0;max-width:620px;">
+					บริการจัดส่งชุดกล่องตัวอย่างจริง (Material Sample Box) แผ่นคอมโพสิต ลามิเนต และอะคริลิก ฟรีสำหรับสถาปนิก ผู้รับเหมา และเจ้าของโครงการ
+				</p>
+			</div>
+			<div class="liger-cat-callout-action">
+				<button type="button" class="liger-btn liger-btn--primary" data-open-quote-modal="true" data-product-name="Material Sample Box 2026" style="padding:1rem 2rem;font-size:1rem;">
+					<span>ขอรับชุดกล่องตัวอย่างจริงฟรี</span>
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+				</button>
+			</div>
+		</div>
+
+	</main>
+</div>
+
+<!-- 3D Interactive Flipbook Modal -->
+<!-- wp:shortcode -->
+[liger_flipbook_modal]
+<!-- /wp:shortcode -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
